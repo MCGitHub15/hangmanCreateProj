@@ -1,0 +1,98 @@
+#APCSP Create Task - Carreon,Matthew & Magdangal,Vinpatrik
+
+import random
+
+#Selection of words, feel free to change whenever
+wordList = ["short", "test", "words"]
+
+#Taken from geeksforgeeks.org
+def wordSplit(word):
+    return [char for char in word]
+
+
+#####################################################################################
+#    This section splits a randomly selected word and creates the blank spaces      #
+#####################################################################################
+
+#Adds each character in the selected word into a list
+wordListSelection = random.choice(wordList)
+selectedWord = (wordSplit(wordListSelection))
+print("DEV TEST: The correct answer for selectedWord (list) is:" + str(selectedWord) + "\n")
+
+#shownList is the characters input by the user
+shownList = []
+for x in range(0, len(selectedWord)):
+  shownList.append("_")
+print("You used the letters: " + str(shownList))
+
+
+######################################################################################
+#                   This is where the guessing part starts                           #
+######################################################################################
+
+guessCounter = 0
+guessedLetters = []
+youWin = bool(False)
+underscoreCount =  len(shownList)
+inSession = True
+print("underscoreCount is " + string(underscoreCount)
+#Fail safe for the youWin condition (fails on "test")
+
+#runs until the number of guesses reaches
+while youWin == False:
+#while (inSession == True) and not((underscoreCount == 0)):
+  guess = input("Please guess a letter: ")
+  guessedLetters.append(guess)
+  guessCounter += 1
+
+  print(guessedLetters)
+
+  for num in range(0,len(shownList)):
+    if guess == selectedWord[num]:
+      del shownList[num]
+      shownList.insert(num, guess)
+
+      #if there is an underscore, it keeps going
+      for num in range(0,len(shownList)):
+        if "_" == shownList[num]:
+          print("DEV IF: selectedWord[num] is " + str(selectedWord[num]))
+          print("There is an underscore.")
+          youWin = False
+        else:
+          print("DEV ELSE: selectedWord[num] is " + str(selectedWord[num]))
+          print("There is no underscore.")
+          youWin = True
+  print(shownList)
+print("You won! Yay!")
+
+
+######################################################################################
+#                   Visuals for the stickman itself based off guesses               # #                                    -M                                             #
+######################################################################################
+
+'''
+    print("    |   ")
+    print("    |   ")
+    if (guessCounter <= 1):
+      print("   ()   ")
+      if (guessCounter <= 2):
+        print("   /|\    ")
+        if (guessCounter <= 3):
+          if (guessCounter <= 4):
+            if (guessCounter <= 5):
+              if (guessCounter <= 6):
+    print("   /\    ")
+
+    print("    |   ")
+    print("    |   ")
+    print("   ()   ")
+    print("   /|\  ")
+    print("   /\   ")
+'''
+
+######################################################################################
+#                                  CHANGELOG                                        # #                                                                                    #
+######################################################################################
+"""
+4/28: Changed if else selectedWord to shownList (Fixed the loop)- M
+"""
